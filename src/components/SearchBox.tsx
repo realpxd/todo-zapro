@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import AllTasks from './AllTasks'
 import TimesIcon from './icons/TimesIcon';
 import SearchIcon from './icons/SearchIcon';
-import BackIcon from './icons/BackIcon';
 import DeleteIcon from './icons/DeleteIcon';
 
 type Task = {

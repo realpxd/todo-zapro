@@ -38,7 +38,7 @@ const AllTasks: React.FC<AllTasksProps> = ({ tasks, setTasks }) => {
     }
 
 
-    localStorage.removeItem('tasks') // clearing the localStorage for debugging purpose
+    // localStorage.removeItem('tasks') // clearing the localStorage for debugging purpose
 
     // Delete a task function
     // @param id: number - the id of the task to be deleted
