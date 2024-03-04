@@ -23,7 +23,7 @@ const SearchBox: React.FC<AllTasksProps> = ({ tasks, setTasks, setSearchBtnClick
 
     useEffect(() => {
         setFilteredTasks(tasks)
-    }, [tasks])
+    }, [])
 
     // Filter tasks function
     // @param searchFor: string - the string to search for in the tasks
@@ -65,7 +65,10 @@ const SearchBox: React.FC<AllTasksProps> = ({ tasks, setTasks, setSearchBtnClick
 
         // updating the state and localStorage
         setTasks(newTasks)
+        // setFilteredTasks(newTasks)
         localStorage.setItem('tasks', JSON.stringify(newTasks))
+        const filter = newTasks.filter((task: Task) => task.title.toLowerCase().includes(searchFor.toLowerCase()))
+        setFilteredTasks(filter)
     }
 
     return (
