@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import AllTasks from './AllTasks'
 import TimesIcon from './icons/TimesIcon';
+import SearchIcon from './icons/SearchIcon';
+import BackIcon from './icons/BackIcon';
+import DeleteIcon from './icons/DeleteIcon';
 
 type Task = {
     userId: number;
@@ -12,12 +15,13 @@ type Task = {
 type AllTasksProps = {
     tasks: Task[];
     setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+    setSearchBtnClicked: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SearchBox: React.FC<AllTasksProps> = ({ tasks, setTasks }) => {
+const SearchBox: React.FC<AllTasksProps> = ({ tasks, setTasks, setSearchBtnClicked }) => {
     const [searchFor, setSearchFor] = useState<string>('')
     const [filteredTasks, setFilteredTasks] = useState<Task[]>([])
-    
+
     useEffect(() => {
         setFilteredTasks(tasks)
     }, [tasks])
@@ -66,24 +70,33 @@ const SearchBox: React.FC<AllTasksProps> = ({ tasks, setTasks }) => {
     }
 
     return (
-        <>
-            <input type="search" onChange={(e) => setSearchFor(e.currentTarget.value)} placeholder='Search your tasks...' />
-            {
-                // mapping through the tasks to visualize them
-                Object.values(filteredTasks).map((task: Task) => {
-                    return (
-                        <div key={task.id}>
-                            {/* @todo add checkbox functionality to strike the completed tasks */}
-                            {/* @todo add delete functionality to delete a task */}
-                            <h2>{task.title}</h2>
-                            <p>{task.completed ? 'Completed' : 'Not completed'}</p>
-                            <input type="checkbox" onClick={() => setCompleted(task.id)} defaultChecked={task.completed} />
-                            <button onClick={() => deleteTask(task.id)}><TimesIcon /></button>
-                        </div>
-                    )
-                })
-            }
-        </>
+        <div className='searchBoxWrapper'>
+            <form action="POST" onSubmit={(e) => setSearchFor(e.currentTarget.value)} className='addTaskWrapper'>
+                <h2 className='headingLevelOne'><span onClick={() => setSearchBtnClicked(false)}><TimesIcon /></span> Search Box</h2>
+                <section className='addTaskContainer'>
+                    <div className='taskBox'>
+                        <input type="search" onChange={(e) => setSearchFor(e.currentTarget.value)} placeholder='Search your tasks...' />
+                        <input type="submit" value='Search' />
+                    </div>
+                </section>
+            </form>
+            <div className='taskContainer'>
+                {
+                    // mapping through the tasks to visualize them
+                    Object.values(filteredTasks).map((task: Task) => {
+                        return (
+                            <div className='taskWrapper' key={task.id}>
+                                <div>
+                                    <input type="checkbox" onClick={() => setCompleted(task.id)} defaultChecked={task.completed} />
+                                    <p className={"taskTitle " + (task.completed ? "completedTask" : "")}>{task.title}</p>
+                                </div>
+                                <button onClick={() => deleteTask(task.id)}><DeleteIcon /></button>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        </div>
     )
 }
 

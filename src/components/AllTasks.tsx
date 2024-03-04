@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import TimesIcon from './icons/TimesIcon';
+import DeleteIcon from './icons/DeleteIcon';
 
 type Task = {
     userId: number;
@@ -37,7 +38,7 @@ const AllTasks: React.FC<AllTasksProps> = ({ tasks, setTasks }) => {
     }
 
 
-    // localStorage.removeItem('tasks') // clearing the localStorage for debugging purpose
+    localStorage.removeItem('tasks') // clearing the localStorage for debugging purpose
 
     // Delete a task function
     // @param id: number - the id of the task to be deleted
@@ -75,23 +76,22 @@ const AllTasks: React.FC<AllTasksProps> = ({ tasks, setTasks }) => {
     }, [])
 
     return (
-        <>
+        <div className='taskContainer'>
             {
                 // mapping through the tasks to visualize them
                 Object.values(tasks).map((task: Task) => {
                     return (
-                        <div key={task.id}>
-                            {/* @todo add checkbox functionality to strike the completed tasks */}
-                            {/* @todo add delete functionality to delete a task */}
-                            <h2>{task.title}</h2>
-                            <p>{task.completed ? 'Completed' : 'Not completed'}</p>
-                            <input type="checkbox" onClick={() => setCompleted(task.id)} defaultChecked={task.completed} />
-                            <button onClick={() => deleteTask(task.id)}><TimesIcon /></button>
+                        <div className='taskWrapper' key={task.id}>
+                            <div>
+                                <input type="checkbox" onClick={() => setCompleted(task.id)} defaultChecked={task.completed} />
+                                <p className={"taskTitle " + (task.completed ? "completedTask" : "")}>{task.title}</p>
+                            </div>
+                            <button onClick={() => deleteTask(task.id)}><DeleteIcon /></button>
                         </div>
                     )
                 })
             }
-        </>
+        </div>
     )
 }
 

@@ -1,7 +1,13 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
   font-family: Lato, Poppins, sans-serif;
+}
+
+body {
+  background: radial-gradient(circle, rgba(4, 1, 46, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 78, 94, 1) 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
 }

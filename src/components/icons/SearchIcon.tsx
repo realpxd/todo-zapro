@@ -1,6 +1,6 @@
 import React from "react";
 
-function SearchIcon() {
+function SearchIcon({light}: {light: boolean}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,7 +10,7 @@ function SearchIcon() {
       viewBox="0 0 24 24"
     >
       <path
-        stroke="#000"
+        stroke={light ? "#000" : "#fff"}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"

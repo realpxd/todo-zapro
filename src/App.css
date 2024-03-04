@@ -1,0 +1,198 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    padding: 5rem 1rem;
+    height: 100vh;
+    width: fit-content;
+    margin: auto;
+    color: white;
+}
+
+.headingLevelOne {
+    font-size: 2.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 0.5rem;
+}
+
+.headingLevelOne span {
+    display: grid;
+    place-items: center;
+}
+
+.container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    margin: auto 1rem;
+    padding-bottom: 4rem;
+}
+
+.taskContainer {
+    height: 100%;
+}
+
+.taskWrapper,
+.addTaskWrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    border-radius: 2rem;
+    color: #000;
+    max-width: 80vw;
+}
+
+.taskWrapper {
+    padding: 0.2rem 0.5rem;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 0.5rem;
+    overflow: hidden;
+}
+
+.taskWrapper div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+}
+
+.taskWrapper input,
+.taskWrapper button {
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    padding: 0.7rem;
+    height: 100%;
+    background: transparent;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+.taskWrapper input:hover,
+.taskWrapper button:is(:hover, :focus) {
+    background: #eaeaea;
+}
+
+.taskWrapper input {
+    appearance: none;
+    position: relative;
+    -webkit-appearance: none;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    border: 0.1rem solid black;
+    border-radius: 2rem;
+    padding: 1rem;
+    accent-color: #ff4343;
+}
+
+.taskWrapper input::before {
+    content: '';
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+}
+
+.taskWrapper input:checked::before {
+    background-color: #ff4343;
+}
+
+
+.taskTitle {
+    font-size: 1.3rem;
+}
+
+.completedTask {
+    text-decoration: line-through;
+}
+
+.addTaskWrapper {
+    flex-direction: column;
+    align-items: start;
+    padding: 0.5rem 1rem 1rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.addTaskWrapper .taskBox {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0 0 0 0.5rem;
+    border-radius: 2rem;
+    background: #eaeaea;
+}
+
+.addTaskContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+.taskBox input {
+    border: none;
+    outline: none;
+    border-radius: 2rem;
+    font-size: 1.2rem;
+    padding: 0.7rem;
+    height: 100%;
+    background: transparent;
+}
+
+.taskBox input:first-of-type {
+    width: 100%;
+}
+
+.taskBox input:last-of-type {
+    background: #ff4343;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 2rem;
+    cursor: pointer;
+    padding: 0.5rem 2rem;
+}
+
+.taskBox input:last-of-type:is(:hover, :focus) {
+    background: #ff0000;
+}
+
+.searchIcon {
+    background: #ff4343;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 2rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+}
+
+.searchIcon:hover {
+    background: #ff0000;
+}
+
+.searchBoxWrapper {
+    position: absolute;
+    gap: 0.5rem;
+    padding: 2rem;
+    border-radius: 2rem;
+    background: rgb(213, 213, 213);
+    top: 0;
+    left: -1rem;
+    z-index: 1;
+}

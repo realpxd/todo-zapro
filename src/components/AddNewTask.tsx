@@ -18,7 +18,7 @@ type AllTasksProps = {
 };
 
 const AddNewTask: React.FC<AllTasksProps> = ({ tasks, setTasks, taskTitle, setTaskTitle }) => {
-
+    const [searchBtnClicked, setSearchBtnClicked] = React.useState<boolean>(false) // state to check if the search button is clicked
     const addTask = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault() // prevent the default form submission
         const newId = tasks.length > 0 ? Math.max(...tasks.map(task => task.id)) + 1 : 1; // generate a new id for the new task
@@ -43,12 +43,18 @@ const AddNewTask: React.FC<AllTasksProps> = ({ tasks, setTasks, taskTitle, setTa
 
     return (
         <>
-            <SearchBox tasks={tasks} setTasks={setTasks} />
-            <div> <ListIcon /> Add New Task</div>
-            <form action="POST" onSubmit={(e) => addTask(e)}>
-                <input type="text" placeholder="Write something..." onChange={(e) => setTaskTitle(e.currentTarget.value)} />
-                <input type="submit" value="Add" />
-                <SearchIcon />
+            {searchBtnClicked && <SearchBox tasks={tasks} setTasks={setTasks} setSearchBtnClicked={setSearchBtnClicked} />}
+            <form action="POST" onSubmit={(e) => addTask(e)} className='addTaskWrapper'>
+                <h1 className='headingLevelOne'><ListIcon /> To-Do List</h1>
+                <section className='addTaskContainer'>
+                    <div className='taskBox'>
+                        <input type="search" placeholder="Write something..." onChange={(e) => setTaskTitle(e.currentTarget.value)} />
+                        <input type="submit" value="Add" />
+                    </div>
+                    <div className='searchIcon' onClick={() => setSearchBtnClicked(true)}>
+                        <SearchIcon light={false} />
+                    </div>
+                </section>
             </form>
         </>
     )
