@@ -1,4 +1,6 @@
 import React from 'react'
+import SearchIcon from './icons/SearchIcon';
+import ListIcon from './icons/ListIcon';
 
 type Task = {
     userId: number;
@@ -40,10 +42,11 @@ const AddNewTask: React.FC<AllTasksProps> = ({ tasks, setTasks, taskTitle, setTa
 
     return (
         <>
-            <div>Add New Task</div>
+            <div> <ListIcon/> Add New Task</div>
             <form action="POST" onSubmit={(e) => addTask(e)}>
                 <input type="text" placeholder="Write something..." onChange={(e) => setTaskTitle(e.currentTarget.value)} />
-                <button type="submit">Add</button>
+                <input type="submit" value="Add" />
+                <SearchIcon />
             </form>
         </>
     )
